@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useParams } from "react-router-dom";
 
 
@@ -29,6 +29,7 @@ export const BookPage = () => {
         return (
             <div className="BookPage">
                 <h1>{book.title}</h1>
+                <p>{book.description}</p>
             </div>
         );
     } else {

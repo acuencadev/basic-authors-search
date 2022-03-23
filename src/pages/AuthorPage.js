@@ -1,5 +1,6 @@
-import {React, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
+import {WorkListsComponent} from "../components/WorkListsComponent";
 
 
 export const AuthorPage = () => {
@@ -30,6 +31,9 @@ export const AuthorPage = () => {
             <div className="AuthorPage">
                 <h1>Author Page #{authorKey}</h1>
                 <p>{author.name}</p>
+                <p>{author.bio}</p>
+
+                <WorkListsComponent authorKey={authorKey} />
             </div>
         );
     } else {

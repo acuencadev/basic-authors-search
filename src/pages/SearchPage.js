@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {AuthorListItemComponent} from "../components/AuthorListItemComponent";
 import {useParams} from "react-router-dom";
 
