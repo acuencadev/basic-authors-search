@@ -3,15 +3,21 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {HomePage} from "./pages/HomePage";
 import {AuthorPage} from "./pages/AuthorPage";
 import {BookPage} from "./pages/BookPage";
+import {SearchBarComponent} from "./components/SearchBarComponent";
+import {SearchPage} from "./pages/SearchPage";
+
 
 function App() {
     return (
         <div className="App">
             <BrowserRouter>
+                <SearchBarComponent />
+
                 <Routes>
-                    <Route path="/" exact element={<HomePage />} />
-                    <Route path="/author" exact element={<AuthorPage />} />
-                    <Route path="/book" exact element={<BookPage />} />
+                    <Route path="/" element={<HomePage />}/>
+                    <Route path="/search/:query" element={<SearchPage />}/>
+                    <Route path="/author/:authorKey" exact element={<AuthorPage/>}/>
+                    <Route path="/book/:bookKey" exact element={<BookPage/>}/>
                 </Routes>
             </BrowserRouter>
         </div>
