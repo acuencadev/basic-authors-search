@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import {ListGroupItem} from "react-bootstrap";
 
 
 export const WorkItemComponent = ({work}) => {
@@ -8,7 +9,7 @@ export const WorkItemComponent = ({work}) => {
 
     return (
         <div className="WorkItemComponent">
-            <Link to={bookRoute}>{work.title}</Link>
+            <ListGroupItem><Link to={bookRoute}>{work.title}</Link></ListGroupItem>
         </div>
     );
 }

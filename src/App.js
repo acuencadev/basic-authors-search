@@ -6,6 +6,8 @@ import {BookPage} from "./pages/BookPage";
 import {SearchBarComponent} from "./components/SearchBarComponent";
 import {SearchPage} from "./pages/SearchPage";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
     return (

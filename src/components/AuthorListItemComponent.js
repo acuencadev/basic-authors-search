@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import {ListGroupItem} from "react-bootstrap";
 
 
 export const AuthorListItemComponent = ({author}) => {
@@ -7,8 +8,7 @@ export const AuthorListItemComponent = ({author}) => {
 
     return (
         <div className="AuthorListItemComponent">
-            <Link to={authorRoute}>{author.name} ({author.work_count})</Link><br/>
-            <i>{author.birth_date}</i>
+            <ListGroupItem><Link to={authorRoute}>{author.name} ({author.work_count})</Link></ListGroupItem>
         </div>
     );
 }

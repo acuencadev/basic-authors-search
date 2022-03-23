@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {WorkItemComponent} from "./WorkItemComponent";
 import {LoadingComponent} from "./LoadingComponent";
+import {ListGroup} from "react-bootstrap";
 
 
 export const WorkListsComponent = ({ authorKey }) => {
 
     const [loading, setLoading] = useState(true);
 
-    const [works, setWorks] = useState();
+    const [works, setWorks] = useState([]);
 
     useEffect(
         () => {
@@ -37,12 +38,16 @@ export const WorkListsComponent = ({ authorKey }) => {
             <LoadingComponent />
         )
     } else {
-        return (
-            <div className="WorkListsComponent">
-                Works for {authorKey} go here...
+        if (works && works.length > 0) {
+            return (
+                <div className="WorkListsComponent">
+                    Works for {authorKey} go here...
 
-                {works.map(work => <WorkItemComponent key={work.key} work={work} />)}
-            </div>
-        );
+                    <ListGroup>
+                        {works.map(work => <WorkItemComponent key={work.key} work={work} />)}
+                    </ListGroup>
+                </div>
+            );
+        }
     }
 }

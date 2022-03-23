@@ -1,15 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import {AuthorListItemComponent} from "../components/AuthorListItemComponent";
 import {useParams} from "react-router-dom";
+import {ListGroup} from "react-bootstrap";
+import {LoadingComponent} from "../components/LoadingComponent";
 
 
 export const SearchPage = () => {
     const { query } = useParams();
     const [results, setResults] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(
         () => {
             const searchAuthors = async () => {
+                setLoading(true);
+
                 console.log(query);
 
                 if (query !== "") {
@@ -20,6 +25,8 @@ export const SearchPage = () => {
 
                     setResults(data.docs);
                 }
+
+                setLoading(false);
             };
 
             searchAuthors();
@@ -27,15 +34,23 @@ export const SearchPage = () => {
         []
     );
 
-    if (results && results.length > 0) {
+    if (loading) {
         return (
-            <div className="SearchPage">
-                <h1>Home Page</h1>
-
-                {results.map(author => <AuthorListItemComponent key={author.key} author={author} />) }
-            </div>
-        );
+            <LoadingComponent />
+        )
     } else {
-        return <p>No records found</p>
+        if (results && results.length > 0) {
+            return (
+                <div className="SearchPage">
+                    <ListGroup>
+                        {results.map(author => <AuthorListItemComponent key={author.key} author={author}/>)}
+                    </ListGroup>
+
+                    <p>Found {results.length} authors...</p>
+                </div>
+            );
+        } else {
+            return <p>No records found</p>
+        }
     }
 }
