@@ -42,15 +42,14 @@ export const SearchPage = () => {
         if (results && results.length > 0) {
             return (
                 <div className="SearchPage">
+                    <p>Found {results.length} authors for the keyword "{query}"...</p>
                     <ListGroup>
                         {results.map(author => <AuthorListItemComponent key={author.key} author={author}/>)}
                     </ListGroup>
-
-                    <p>Found {results.length} authors...</p>
                 </div>
             );
         } else {
-            return <p>No records found</p>
+            return <p>Couldn't find any authors with the keyword "{query}".</p>
         }
     }
 }

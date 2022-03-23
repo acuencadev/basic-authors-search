@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import {Badge, Card, Col, Container, Image, Placeholder, Row, Table} from "react-bootstrap";
+import {Badge, Col, Container, Image, Row, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {AuthorNameComponent} from "../components/AuthorNameComponent";
 
@@ -13,11 +13,11 @@ export const BookPage = () => {
     useEffect(
         () => {
             const getDescription = (data) => {
-                if (data.description.value) {
-                    return data.description.value;
-                }
+                if (data.description && data.description.value) {
+                    if (data.description.value) {
+                        return data.description.value;
+                    }
 
-                if (data.description) {
                     return data.description;
                 }
 
@@ -38,8 +38,10 @@ export const BookPage = () => {
 
             const getCoverUrl = (data) => {
                 if (data.covers && data.covers.length > 0) {
-                    return `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`
+                    return `https://covers.openlibrary.org/b/id/${data.covers[0]}-M.jpg`;
                 }
+
+                return `https://via.placeholder.com/180x288.png?text=Book cover not found`;
             };
 
             const fetchBookData = async () => {
@@ -91,7 +93,7 @@ export const BookPage = () => {
                             <Image src={book.coverUrl} alt={book.title} />
                         </Col>
                         <Col sm={8}>
-                            <Table striped bordered hover size="sm">
+                            <Table responsive striped bordered size="sm">
                                 <tr>
                                     <th>Description</th>
                                     <td>{book.description}</td>
@@ -107,7 +109,7 @@ export const BookPage = () => {
                                 <tr>
                                     <th>Subjects</th>
                                     <td>
-                                        {book.subjects.map(subject => <Badge pill bg="secondary">{subject}</Badge>)}
+                                        {book.subjects.map(subject => <Badge key={subject} pill bg="secondary">{subject}</Badge>)}
                                     </td>
                                 </tr>
                             </Table>

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Placeholder} from "react-bootstrap";
+import {Link} from "react-router-dom";
 
 
 export const AuthorNameComponent = ({author}) => {
@@ -7,7 +8,7 @@ export const AuthorNameComponent = ({author}) => {
     if (author) {
         return (
             <div className="AuthorNameComponent">
-                <p>by {author.name}</p>
+                <p>by <Link to={`/author/${author.key.split('/')[2]}`}>{author.name}</Link></p>
             </div>
         );
     } else {
