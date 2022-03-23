@@ -31,9 +31,9 @@ export const BookPage = () => {
                             return data.excerpts[i].excerpt;
                         }
                     }
-
-                    return "First sentence not available";
                 }
+
+                return "First sentence not available";
             };
 
             const getCoverUrl = (data) => {
