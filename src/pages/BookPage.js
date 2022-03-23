@@ -1,12 +1,14 @@
 import { useParams } from "react-router-dom";
-import {Badge, Card, Col, Container, Image, Row, Table} from "react-bootstrap";
+import {Badge, Card, Col, Container, Image, Placeholder, Row, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
+import {AuthorNameComponent} from "../components/AuthorNameComponent";
 
 
 export const BookPage = () => {
 
     const { bookKey } = useParams();
     const [book, setBook] = useState();
+    const [author, setAuthor] = useState(null);
 
     useEffect(
         () => {
@@ -50,13 +52,22 @@ export const BookPage = () => {
                     setBook({
                         title: data.title,
                         description: getDescription(data),
-                        created: data.created.value,
+                        created: new Date(data.created.value).toDateString(),
                         first_sentence: getFirstSentence(data),
                         coverUrl: getCoverUrl(data),
                         subjects: data.subject_people || []
                     });
+
+                   await fetchAuthorData(data.authors[0].author.key);
                 }
             };
+
+            const fetchAuthorData = async (authorKey) => {
+                const response = await fetch(`https://openlibrary.org${authorKey}.json`);
+                const data = await response.json();
+
+                setAuthor(data);
+            }
 
             fetchBookData();
         },
@@ -69,7 +80,10 @@ export const BookPage = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <h1>{book.title}</h1>
+                            <div>
+                                <h1>{book.title}</h1>
+                                <AuthorNameComponent author={author} />
+                            </div>
                         </Col>
                     </Row>
                     <Row>
