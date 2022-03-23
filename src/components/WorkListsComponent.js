@@ -39,7 +39,7 @@ export const WorkListsComponent = ({ authorKey }) => {
         if (works && works.length > 0) {
             return (
                 <div className="WorkListsComponent">
-                    Works for {authorKey} go here...
+                    <p>Found {works.length} works for this author...</p>
 
                     <ListGroup>
                         {works.map(work => <WorkItemComponent key={work.key} work={work} />)}
