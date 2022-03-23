@@ -18,8 +18,6 @@ export const WorkListsComponent = ({ authorKey }) => {
                     const response = await fetch(`https://openlibrary.org/authors/${authorKey}/works.json`);
                     const data = await response.json();
 
-                    console.log("Works", data.entries);
-
                     if (data && data.entries) {
                         setWorks(data.entries);
                     }

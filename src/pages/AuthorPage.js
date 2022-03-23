@@ -19,8 +19,6 @@ export const AuthorPage = () => {
                     const response = await fetch(`https://openlibrary.org/authors/${authorKey}.json`);
                     const data = await response.json();
 
-                    console.log("Author", data);
-
                     setAuthor(data);
                 }
 

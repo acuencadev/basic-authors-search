@@ -21,8 +21,6 @@ export const SearchPage = () => {
                     const response = await fetch(`https://openlibrary.org/search/authors.json?q=${query}`);
                     const data = await response.json();
 
-                    console.log(data);
-
                     setResults(data.docs);
                 }
 

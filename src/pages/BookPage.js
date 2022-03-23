@@ -50,8 +50,6 @@ export const BookPage = () => {
                     const response = await fetch(`https://openlibrary.org/works/${bookKey}.json`);
                     const data = await response.json();
 
-                    console.log("Book", data);
-
                     setBook({
                         title: data.title,
                         description: getDescription(data),
