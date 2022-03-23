@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
-import {Badge, Col, Container, Image, Row, Table} from "react-bootstrap";
+import {Col, Container, Image, Row, Table} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {AuthorNameComponent} from "../components/AuthorNameComponent";
+import {SubjectsBadgesComponent} from "../components/SubjectsBadgesComponent";
 
 
 export const BookPage = () => {
@@ -109,7 +110,7 @@ export const BookPage = () => {
                                 <tr>
                                     <th>Subjects</th>
                                     <td>
-                                        {book.subjects.map(subject => <Badge key={subject} pill bg="secondary">{subject}</Badge>)}
+                                        <SubjectsBadgesComponent subjects={book.subjects} />
                                     </td>
                                 </tr>
                             </Table>
